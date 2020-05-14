@@ -8,13 +8,13 @@ dotenv.config();
 // test for api key connected
 console.log('GIPHY_API_KEY:', process.env.GIPHY_API_KEY);
 
-let searchTerm = '';
+
 
 // GET AXIOS
-
 app.get('/search', (req, res) => {
-  console.log('in /search GET', searchTerm);
-  axios.get('https://api.giphy.com/v1/gifs/search?api_key=' + process.env.GIPHY_API_KEY + '&q=' + searchTerm + '&limit=25&offset=0&rating=G&lang=en')
+  // console.log('req.query contains:', req.params)
+  console.log('in /search GET with searchTerm', searchTerm);
+  axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}'&q='${searchTerm}}'&limit=25&offset=0&rating=G&lang=en`)
     .then((response) => {
       res.send(response.data);
 
@@ -25,12 +25,23 @@ app.get('/search', (req, res) => {
 })
 
 // POST AXIOS
-
 app.post('/search', (req, res) => {
-  console.log('in /search POST', req.body);
-  searchTerm = req.body;
-  res.sendStatus(201);
+  let searchTerm = req.body.search;
+  console.log('in /search POST', req.body)
+    .then((response) => {
+      res.sendStatus(201);
+    }).catch((error) => {
+      console.log('In POST with',error)
+    })
 })
+
+// router.post('/', (req, res) => {
+//   const itemToAdd = req.body;
+//   // give the fruit an id so we can delete it later
+//   itemToAdd.id = idGenerator.next().value;
+//   basket.push(itemToAdd);
+//   res.sendStatus(201);
+// });
 
 /* SEARCH URL: 'https://api.giphy.com/v1/gifs/search?api_key=' + process.env.GIPHY_API_KEY + '&q=' + PANDA + '&limit=25&offset=0&rating=G&lang=en' */
 

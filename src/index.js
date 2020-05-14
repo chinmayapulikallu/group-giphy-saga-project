@@ -41,8 +41,7 @@ function* rootSaga() {
 function* searchGif(action) { /* This SAGA talks to server.js and sends the response to reducer */
     console.log('in searchGif', action.payload)
     try {
-        const response = yield axios.post('/search', action.payload)
-        //Where does the response go after our post?
+        yield axios.post(`/search`, 'test') /* FIGURE OUT WHY action.payload doesn't turn into req.body */
         yield put({ type: 'GET_GIF' })
     } catch (error) {
         console.log('There was an error in searchGif:', error);
@@ -51,12 +50,11 @@ function* searchGif(action) { /* This SAGA talks to server.js and sends the resp
 function* getGif(action){
 console.log('in getGif')
   try {
-      const response = yield axios.get('/search');
+      const response = yield axios.get(`/search`);
       yield put({type: 'getGif', payload: response.data})
   }  catch(error){
       console.log(error);
   }
-
 }
 
 sagaMiddleware.run(rootSaga);

@@ -16,7 +16,7 @@ class Search extends Component {
 
     handleClick = () => {
         console.log('in handleClick');
-        this.props.dispatch({ type: 'SEARCH', payload: this.state });
+        this.props.dispatch({ type: 'SEARCH', payload: this.state.search });
         // GOAL: Send this.state -> server using AXIOS
     }
 
