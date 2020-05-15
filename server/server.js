@@ -9,28 +9,28 @@ dotenv.config();
 console.log('GIPHY_API_KEY:', process.env.GIPHY_API_KEY);
 
 // GET AXIOS
-// app.get('/search', (req, res) => {
-//   // console.log('req.query contains:', req.params)
-//   console.log('in /search GET with searchTerm', searchTerm);
-//   axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}'&q='${searchTerm}}'&limit=25&offset=0&rating=G&lang=en`)
-//     .then((response) => {
-//       res.send(response.data);
-
-//     }).catch((error) => {
-//       console.log(error);
-//       res.send(500);
-//     })
-// })
+app.get(`/search/:searchTerm`, (req, res) => {
+  // console.log('req.query contains:', req.params)
+  console.log('in /search GET with searchTerm', req.params.searchTerm);
+  let searchTerm = req.params.searchTerm
+  axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchTerm}&limit=25&offset=0&rating=G&lang=en`)
+    .then((response) => {
+      res.send(response.data);
+    }).catch((error) => {
+      console.log(error);
+      res.send(500);
+    })
+})
 
 // POST AXIOS
-app.post('/search', (req, res) => {
-  console.log(req.body)
-  .then((result)=>{
-    res.sendStatus(200);
-  }).catch((error)=>{
-    res.sendStatus(500);
-  })
-})
+// app.post('/search', (req, res) => {
+//   console.log(req.body)
+//   .then((result)=>{
+//     res.sendStatus(200);
+//   }).catch((error)=>{
+//     res.sendStatus(500);
+//   })
+// })
 
 // router.post('/', (req, res) => {
 //   const itemToAdd = req.body;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchList from '../SearchList/SearchList'
-import axios from 'axios';
 
 class Search extends Component {
 
