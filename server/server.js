@@ -22,26 +22,6 @@ app.get(`/search/:searchTerm`, (req, res) => {
     })
 })
 
-// POST AXIOS
-// app.post('/search', (req, res) => {
-//   console.log(req.body)
-//   .then((result)=>{
-//     res.sendStatus(200);
-//   }).catch((error)=>{
-//     res.sendStatus(500);
-//   })
-// })
-
-// router.post('/', (req, res) => {
-//   const itemToAdd = req.body;
-//   // give the fruit an id so we can delete it later
-//   itemToAdd.id = idGenerator.next().value;
-//   basket.push(itemToAdd);
-//   res.sendStatus(201);
-// });
-
-/* SEARCH URL: 'https://api.giphy.com/v1/gifs/search?api_key=' + process.env.GIPHY_API_KEY + '&q=' + PANDA + '&limit=25&offset=0&rating=G&lang=en' */
-
 // Route includes
 const favoriteRouter = require('./routes/favorite.router');
 const categoryRouter = require('./routes/category.router');

@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class SearchItem extends Component {
 
-    render() {
+    gifClick = () => {
+        console.log("gif was clicked", this.props.gif.id);
+        // AXIOS POST 
+        let favoriteGif = {
+            favorite: this.props.gif.id
+        }
+        axios.post('/api/favorite', favoriteGif)
+            .then((response) => {
+                console.log(response);
+            }).catch((error => {
+                console.log(error)
+            })
+            )
+    }
 
+    render() {
         return (
             <div>
-                Testing a {this.props.gif.id}
-                <img src={this.props.gif.images.original.url}/>       
+                <img onClick={this.gifClick} src={this.props.gif.images.original.url} />
             </div>
         );
     }
