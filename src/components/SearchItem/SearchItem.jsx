@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 class SearchItem extends Component {
 
     render() {
+
         return (
             <div>
-                {this.props.gif.url}
+                Testing a {this.props.gif.id}
+                <img src={this.props.gif.images.original.url}/>       
             </div>
         );
     }
