@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchList from '../SearchList/SearchList'
+import axios from 'axios';
 
 class Search extends Component {
 
@@ -16,8 +17,7 @@ class Search extends Component {
 
     handleClick = () => {
         console.log('in handleClick');
-        this.props.dispatch({ type: 'SEARCH', payload: this.state.search });
-        // GOAL: Send this.state -> server using AXIOS
+        this.props.dispatch({ type: 'CLICK_SEARCH', payload: this.state.search });
     }
 
     render() {
